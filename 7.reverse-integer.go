@@ -10,16 +10,23 @@ import (
 	"math"
 )
 // @lc code=start
+// convert the integer to string
+// convert the string to a slice of rune 
+// loop through the slice of rune
+	// reverse the rune values
+// convert the rune back to string then back to integer
+// check if the intial integer is negative and return a negative reversed integer
+// else return the reversed integer
 func reverse(x int) int {
-	if int32(x) == 0{
-		return 0
+	strEquivalent:=strconv.Itoa(int(math.Abs(float64(x))))
+	runeEquivalent:=[]rune(strEquivalent)
+
+	for i,j:=0,len(runeEquivalent)-1;i<j;i,j=i+1,j-1{
+		runeEquivalent[i],runeEquivalent[j] = runeEquivalent[j],runeEquivalent[i]
 	}
-	ans:=strconv.Itoa(int(math.Abs(float64(x))))
-	anss:=[]rune(ans)
-	for i,j:=0,len(anss)-1;i<j;i,j=i+1,j-1{
-		anss[i],anss[j] = anss[j],anss[i]
-	}
-	finalAns,_:=strconv.Atoi(string(anss))
+
+	finalAns,_:=strconv.Atoi(string(runeEquivalent))
+	
 	if math.Signbit(float64(x)){
 		return -finalAns
 	}
