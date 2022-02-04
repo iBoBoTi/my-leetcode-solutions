@@ -19,14 +19,16 @@ import (
 // else return the reversed integer
 func reverse(x int) int {
 	strEquivalent:=strconv.Itoa(int(math.Abs(float64(x))))
-	runeEquivalent:=[]rune(strEquivalent)
+	runeEquivalent:=[]byte(strEquivalent)
 
 	for i,j:=0,len(runeEquivalent)-1;i<j;i,j=i+1,j-1{
 		runeEquivalent[i],runeEquivalent[j] = runeEquivalent[j],runeEquivalent[i]
 	}
 
 	finalAns,_:=strconv.Atoi(string(runeEquivalent))
-	
+	if finalAns > math.MaxInt32 || finalAns < math.MinInt32{
+		return 0
+	}
 	if math.Signbit(float64(x)){
 		return -finalAns
 	}
