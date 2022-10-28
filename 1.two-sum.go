@@ -10,26 +10,16 @@ package main
 
 
 func twoSum(nums []int, target int) []int {
-	ans := make([]int,0)
-	for i,j:= range nums{
-		num:= target - j
-		ind:= contains(nums,num, i)
-		if ind != -1 {
-			ans = append(ans,i,ind)
-			break
+	checker := make(map[int]int)
+	for i, _ := range nums {
+		comp := target - nums[i]
+		if _, exist := checker[comp]; exist{
+			return []int{checker[comp],i}
 		}
+		checker[nums[i]] = i
 	}
-    return ans
+	return []int{}
 }
 
-func contains(nums []int, num, ind int)int{
-	n:=-1
-	for i,j:= range nums{
-		if j == num && ind != i{
-		 n= i 	
-		}
-	}
-	return n
-}
 // @lc code=end
 
